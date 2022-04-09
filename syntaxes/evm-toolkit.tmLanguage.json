@@ -1,0 +1,291 @@
+{
+  "name": "EVM Toolkit",
+  "scopeName": "source.etk",
+  "patterns": [
+    { "include": "#natspec" },
+    { "include": "#comment" },
+    { "include": "#number" },
+    { "include": "#opcodes" },
+    { "include": "#label" },
+    { "include": "#macros" },
+    { "include": "#string" },
+    { "include": "#operations" },
+    { "include": "#reserved-keywords" }
+  ],
+  "repository": {
+    "comment": {
+      "match": "#(.*?)$",
+      "name": "comment.line.number-sign.evm-toolkit"
+    },
+    "natspec": {
+      "patterns": [
+        {
+          "begin": "#",
+          "end": "$",
+          "name": "comment.block.documentation.evm-toolkit",
+          "patterns": [{ "include": "#natspec-tags" }]
+        }
+      ]
+    },
+    "natspec-tags": {
+      "patterns": [
+        { "include": "#natspec-tag-title" },
+        { "include": "#natspec-tag-author" },
+        { "include": "#natspec-tag-notice" },
+        { "include": "#natspec-tag-dev" },
+        { "include": "#natspec-tag-param" },
+        { "include": "#natspec-tag-return" }
+      ]
+    },
+    "natspec-tag-title": {
+      "match": "(@title)\\b",
+      "name": "storage.type.title.natspec"
+    },
+    "natspec-tag-author": {
+      "match": "(@author)\\b",
+      "name": "storage.type.author.natspec"
+    },
+    "natspec-tag-notice": {
+      "match": "(@notice)\\b",
+      "name": "storage.type.dev.natspec"
+    },
+    "natspec-tag-dev": {
+      "match": "(@dev)\\b",
+      "name": "storage.type.dev.natspec"
+    },
+    "natspec-tag-param": {
+      "match": "(@param)(\\s+([A-Za-z_]\\w*))?\\b",
+      "captures": {
+        "1": { "name": "storage.type.param.natspec" },
+        "3": { "name": "variable.other.natspec" }
+      }
+    },
+    "natspec-tag-return": {
+      "match": "(@return)\\b",
+      "name": "storage.type.return.natspec"
+    },
+    "number": {
+      "patterns": [
+        { "include": "#number-binary" },
+        { "include": "#number-octal" },
+        { "include": "#number-decimal" },
+        { "include": "#number-negative-decimal" },
+        { "include": "#number-hex" }
+      ]
+    },
+    "number-binary": {
+      "match": "\\b(0[bB][01]+)\\b",
+      "name": "constant.numeric.binary.evm-toolkit"
+    },
+    "number-octal": {
+      "match": "\\b(0[oO][0-7]+)\\b",
+      "name": "constant.numeric.octal.evm-toolkit"
+    },
+    "number-decimal": {
+      "match": "\\b(\\d+(\\.\\d+)?)\\b",
+      "name": "constant.numeric.decimal.evm-toolkit"
+    },
+    "number-negative-decimal": {
+      "match": "\\b(\\-\\d+(\\.\\d+)?)\\b",
+      "name": "constant.numeric.decimal.negative.evm-toolkit"
+    },
+    "number-hex": {
+      "match": "\\b(0[xX][a-fA-F0-9]+)\\b",
+      "name": "constant.numeric.hexadecimal.evm-toolkit"
+    },
+    "opcodes": {
+      "patterns": [
+        { "include": "#opcodes-stop" },
+        { "include": "#opcodes-calculation" },
+        { "include": "#opcodes-stack" },
+        { "include": "#opcodes-io" },
+        { "include": "#opcodes-side-effects" },
+        { "include": "#template-parameter-call" }
+      ]
+    },
+    "opcodes-io": {
+      "match": "\\b(sstore|sload|mstore8|mstore|mload|pop|msize|balance|address|returndatacopy|returndatasize|extcodecopy|extcodesize|gasprice|caller|origin|gaslimit|difficulty|number|timestamp|coinbase|blockhash|codecopy|codesize|calldatacopy|calldatasize|calldataload|callvalue|gas)\\b",
+      "captures": {
+        "1": { "name": "entity.name.function.inputs.evm-toolkit" }
+      }
+    },
+    "opcodes-side-effects": {
+      "match": "\\b(log4|log3|log2|log1|log0|jumpdest|pc|jumpi|jump|create2|staticcall|delegatecall|callcode|call|create)\\b",
+      "captures": {
+        "1": { "name": "support.type.side-effects.evm-toolkit" }
+      }
+    },
+    "opcodes-calculation": {
+      "patterns": [
+        {
+          "match": "\\b(signextend|exp|mulmod|addmod|smod|mod|sdiv|div|sub|mul|add|shr|shl|ror|rol|sar)\\b",
+          "captures": {
+            "1": { "name": "keyword.operator.arithmetic.evm-toolkit" }
+          }
+        },
+        {
+          "match": "\\b(iszero|eq|sgt|slt|gt|lt)\\b",
+          "captures": {
+            "1": { "name": "keyword.operator.comparison.evm-toolkit" }
+          }
+        },
+        {
+          "match": "\\b(not|xor|or|and)\\b",
+          "captures": {
+            "1": { "name": "keyword.operator.bitwise.evm-toolkit" }
+          }
+        },
+        {
+          "match": "\\b(keccak|keccak256|sha3|byte)\\b",
+          "captures": {
+            "1": { "name": "keyword.operator.custom.evm-toolkit" }
+          }
+        }
+      ]
+    },
+    "opcodes-stop": {
+      "patterns": [
+        {
+          "match": "\\b(invalid|revert)\\b",
+          "name": "keyword.control.flow.evm-toolkit"
+        },
+        {
+          "match": "\\b(selfdestruct|return|stop)\\b",
+          "name": "keyword.control.flow.evm-toolkit"
+        }
+      ]
+    },
+    "opcodes-stack": {
+      "match": "\\b((swap1|dup1)[0-6]|(swap|dup)[1-9]|push3[0-2]|push[1-2][0-9]|push[1-9])\\b",
+      "name": "variable.other.push.evm-toolkit"
+    },
+    "label": {
+      "match": "\\b([a-zA-Z0-9][a-zA-Z0-9_]*)\\b\\:",
+      "name": "entity.name.tag.evm-toolkit"
+    },
+    "expression-label": {
+      "match": "\\b([a-zA-Z0-9][a-zA-Z0-9_]*)\\b",
+      "name": "entity.name.tag.evm-toolkit"
+    },
+    "expression": {
+      "patterns": [
+        { "include": "#round-braces" },
+        { "include": "#number" },
+        { "include": "#expression-label" }
+      ]
+    },
+    "round-braces": {
+      "begin": "\\(",
+      "end": "\\)",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.parenthesis.begin.evm-toolkit"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.parenthesis.end.evm-toolkit"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#expression"
+        }
+      ]
+    },
+    "macros": {
+      "patterns": [
+        { "include": "#macros-instruction" },
+        { "include": "#macros-expression" },
+        { "include": "#macros-builtins-instructions" },
+        { "include": "#macros-builtins-expressions" },
+        { "include": "#macros-variables" },
+        { "include": "#function-invocation" }
+      ]
+    },
+    "macros-instruction": {
+      "begin": "(?x) (\\% \\b macro \\b) \\s+",
+      "end": "\\n",
+      "beginCaptures": {
+        "1": { "name": "storage.type.function.evm-toolkit" }
+      },
+      "patterns": [{ "include": "#function-declaration" }]
+    },
+    "macros-expression": {
+      "begin": "(?x) (\\% \\b def \\b) \\s+",
+      "end": "\\n",
+      "beginCaptures": {
+        "1": { "name": "storage.type.function.evm-toolkit" }
+      },
+      "patterns": [{ "include": "#function-declaration" }]
+    },
+    "macros-builtins-instructions": {
+      "begin": "(?x) (\\% \\b (import|include|include_hex|push) ) \\b \\(",
+      "end": "(\\s*\\))",
+      "beginCaptures": {
+        "1": { "name": "keyword.control.import.evm-toolkit" }
+      },
+      "endCaptures": {
+        "1": { "name": "punctuation.parenthesis.end.evm-toolkit" }
+      },
+      "patterns": [{ "include": "#macro-arguments" }]
+    },
+    "macros-builtins-expressions": {
+      "begin": "(?x) (\\b (selector|topic) ) \\b \\(",
+      "end": "(\\s*\\))",
+      "beginCaptures": {
+        "1": { "name": "entity.name.function.builtin.evm-toolkit" }
+      },
+      "endCaptures": {
+        "1": { "name": "punctuation.parenthesis.end.evm-toolkit" }
+      },
+      "patterns": [{ "include": "#macro-arguments" }]
+    },
+    "macro-arguments": {
+      "begin": "(?<=(\\G|^|,))(\\B|\\b)",
+      "end": "(\\B|\\b)(?=($|,|\\Z|\\z|\\n|\\)))",
+      "patterns": [{ "include": "#argument" }]
+    },
+    "argument": {
+      "patterns": [{ "include": "#string" }, { "include": "#expression" }]
+    },
+    "function-declaration": {
+      "begin": "(?x) \\b ([a-zA-Z][a-zA-Z0-9_]*) \\b \\(\\s*",
+      "end": "\\s*\\)",
+      "beginCaptures": {
+        "1": { "name": "entity.name.function.declaration.evm-toolkit" }
+      },
+      "patterns": [{ "include": "#function-parameters" }]
+    },
+    "function-parameters": {
+      "match": "(?x) ([a-zA-Z][a-zA-Z0-9]*) \\s* (?:(,))?\\s*",
+      "captures": {
+        "1": { "name": "variable.parameter.function.language.evm-toolkit" }
+      }
+    },
+    "macros-variables": {
+      "match": "(?x) (\\$\\b[a-zA-Z][a-zA-Z0-9]*\\b)",
+      "name": "variable.parameter.function.language.evm-toolkit"
+    },
+    "function-invocation": {
+      "begin": "(?x) (\\% \\b ([a-zA-Z][a-zA-Z0-9_]*) ) \\b \\(\\s*",
+      "end": "\\s*\\)",
+      "beginCaptures": {
+        "1": { "name": "entity.name.function.invocation.evm-toolkit" }
+      },
+      "patterns": [{ "include": "#function-parameters" }]
+    },
+    "reserved-keywords": {
+      "match": "%\\bend\\b",
+      "name": "keyword.control.evm-toolkit"
+    },
+    "string": {
+      "match": "(\"(\\\\\\\\|\\\\\"|([^\\\"\\\\]))*\")",
+      "name": "string.quoted.evm-toolkit"
+    },
+    "operations": {
+      "match": "(\\+|\\-|\\*|\\/)",
+      "name": "keyword.operator.arithmetic.evm-toolkit"
+    }
+  }
+}

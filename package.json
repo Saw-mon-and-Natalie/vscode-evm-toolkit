@@ -1,0 +1,69 @@
+{
+  "name": "vscode-evm-toolkit",
+  "version": "0.0.1",
+  "description": "EVM Toolkit support for Visual Studio Code",
+  "scripts": {
+    "deploy": "vsce publish --yarn"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Saw-mon-and-Natalie/vscode-evm-toolkit.git"
+  },
+  "keywords": [
+    "EVM",
+    "evm-toolkit",
+    "ethereum",
+    "blockchain",
+    "compiler",
+    "assembly"
+  ],
+  "author": "Saw-mon and Natalie",
+  "publisher": "Saw-mon-and-Natalie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Saw-mon-and-Natalie/vscode-evm-toolkit/issues"
+  },
+  "homepage": "https://github.com/Saw-mon-and-Natalie/vscode-evm-toolkit#readme",
+  "engines": {
+    "vscode": "^1.20.2"
+  },
+  "activationEvents": [],
+  "main": "./src/extension.js",
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Themes"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "evm-toolkit",
+        "path": "./snippets/evm-toolkit.json"
+      }
+    ],
+    "languages": [
+      {
+        "id": "evm-toolkit",
+        "aliases": [
+          "EVM Toolkit",
+          "evm-toolkit",
+          "etk"
+        ],
+        "extensions": [
+          ".etk",
+          ".evm-toolkit",
+          ".evm.toolkit",
+          ".evm"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "evm-toolkit",
+        "scopeName": "source.etk",
+        "path": "./syntaxes/evm-toolkit.tmLanguage.json"
+      }
+    ]
+  }
+}
