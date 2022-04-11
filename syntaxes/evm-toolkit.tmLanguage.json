@@ -156,8 +156,29 @@
       ]
     },
     "opcodes-stack": {
-      "match": "\\b((swap1|dup1)[0-6]|(swap|dup)[1-9]|push3[0-2]|push[1-2][0-9]|push[1-9])\\b",
-      "name": "variable.other.push.evm-toolkit"
+      "patterns": [
+        { "include": "#opcodes-stack-swap" },
+        { "include": "#opcodes-stack-dup" },
+        { "include": "#opcodes-stack-push" }
+      ]
+    },
+    "opcodes-stack-swap": {
+      "match": "\\b((swap1)[0-6]|(swap)[1-9])\\b",
+      "name": "variable.other.swap.evm-toolkit"
+    },
+    "opcodes-stack-dup": {
+      "match": "\\b((dup1)[0-6]|(dup)[1-9])\\b",
+      "name": "variable.other.dup.evm-toolkit"
+    },
+    "opcodes-stack-push": {
+      "begin": "(?x) \\b (push3[0-2]|push[1-2][0-9]|push[1-9]) \\b \\s* ",
+      "end": "($|\\n)",
+      "beginCaptures": {
+        "1": { "name": "variable.other.push.evm-toolkit" }
+      },
+      "patterns": [
+        {"include": "#expression"}
+      ]
     },
     "label": {
       "match": "\\b([a-zA-Z0-9][a-zA-Z0-9_]*)\\b\\:",
@@ -171,7 +192,9 @@
       "patterns": [
         { "include": "#round-braces" },
         { "include": "#number" },
-        { "include": "#expression-label" }
+        { "include": "#expression-label" },
+        { "inlude": "#function-invocation"},
+        { "include": "#macros-variables"}
       ]
     },
     "round-braces": {
