@@ -9,12 +9,9 @@
 </p>
 
 <p align="center">
-    <img src="https://vsmarketplacebadge.apphb.com/version/saw-mon-and-natalie.vscode-evm-toolkit.svg
-" alt="EVM Toolkit">
-    <img src="https://vsmarketplacebadge.apphb.com/installs/saw-mon-and-natalie.vscode-evm-toolkit.svg
-" alt="EVM Toolkit installs">
-    <img src="https://vsmarketplacebadge.apphb.com/rating-short/saw-mon-and-natalie.vscode-evm-toolkit.svg
-" alt="EVM Toolkit rating">
+    <img src="https://vsmarketplacebadge.apphb.com/version/saw-mon-and-natalie.vscode-evm-toolkit.svg" alt="EVM Toolkit">
+    <img src="https://vsmarketplacebadge.apphb.com/installs/saw-mon-and-natalie.vscode-evm-toolkit.svg" alt="EVM Toolkit installs">
+    <img src="https://vsmarketplacebadge.apphb.com/rating-short/saw-mon-and-natalie.vscode-evm-toolkit.svg" alt="EVM Toolkit rating">
 </p>
 
 # EVM Toolkit 
