@@ -1,7 +1,7 @@
 # EVM Toolkit
 
-Snippets and syntax highlighting for EVM Toolkit.
+Snippets and syntax highlighting for [EVM Toolkit](https://github.com/quilt/etk).
 
 # TODO:
 - [ ] add compile command
-- [ ] hover information for opcodes
+- [x] hover information for opcodes

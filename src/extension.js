@@ -8,6 +8,7 @@
 /** imports */
 const vscode = require("vscode");
 const settings = require("./settings");
+const { provideHoverHandler } = require("./features/hover");
 
 /** global vars */
 var activeEditor;
@@ -20,6 +21,13 @@ function onActivate(context) {
 
   function registerDocType(type) {
     context.subscriptions.push(vscode.languages.reg);
+    context.subscriptions.push(
+      vscode.languages.registerHoverProvider(type, {
+        provideHover(document, position, token) {
+          return provideHoverHandler(document, position, token, type);
+        },
+      })
+    );
     vscode.window.onDidChangeActiveTextEditor(
       (editor) => {
         activeEditor = editor;

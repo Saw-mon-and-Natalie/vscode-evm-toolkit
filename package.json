@@ -1,6 +1,6 @@
 {
   "name": "vscode-evm-toolkit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "EVM Toolkit support for Visual Studio Code",
   "scripts": {
     "deploy": "vsce publish --yarn"
@@ -15,7 +15,11 @@
     "ethereum",
     "blockchain",
     "compiler",
-    "assembly"
+    "assembly",
+    "developer",
+    "virtual-machine",
+    "bytecode",
+    "opcode"
   ],
   "author": "Saw-mon and Natalie",
   "publisher": "Saw-mon-and-Natalie",
@@ -27,8 +31,13 @@
   "engines": {
     "vscode": "^1.20.2"
   },
-  "activationEvents": [],
+  "activationEvents": [
+    "onLanguage:evm-toolkit"
+  ],
   "main": "./src/extension.js",
+  "capabilities": {
+    "hoverProvider": "true"
+  },
   "categories": [
     "Programming Languages",
     "Snippets",
