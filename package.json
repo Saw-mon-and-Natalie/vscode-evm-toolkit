@@ -1,13 +1,13 @@
 {
   "name": "vscode-evm-toolkit",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "EVM Toolkit support for Visual Studio Code",
   "scripts": {
     "deploy": "vsce publish --yarn"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Saw-mon-and-Natalie/vscode-evm-toolkit.git"
+    "url": "https://github.com/Saw-mon-and-Natalie/vscode-evm-toolkit.git"
   },
   "keywords": [
     "EVM",
@@ -23,6 +23,7 @@
   ],
   "author": "Saw-mon and Natalie",
   "publisher": "Saw-mon-and-Natalie",
+  "icon": "images/icon.png",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Saw-mon-and-Natalie/vscode-evm-toolkit/issues"
