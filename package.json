@@ -1,6 +1,6 @@
 {
   "name": "vscode-evm-toolkit",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "EVM Toolkit support for Visual Studio Code",
   "scripts": {
     "deploy": "vsce publish --yarn"

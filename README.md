@@ -18,6 +18,19 @@
 
 Snippets and syntax highlighting for [EVM Toolkit](https://github.com/quilt/etk).
 
+## Preview
+
+### Syntax Highlighting
+<p align="center">
+        <img src="https://github.com/Saw-mon-and-Natalie/vscode-evm-toolkit/raw/main/images/syntax-highlight.png" alt="EVM Toolkit Visual Studio Code Extension syntax highlight">
+</p>
+
+### Opcode Hover Card
+
+<p align="center">
+        <img src="https://github.com/Saw-mon-and-Natalie/vscode-evm-toolkit/raw/main/images/hover.png" alt="EVM Toolkit Visual Studio Code Extension syntax hover">
+</p>
+
 # TODO:
 - [ ] add compile command
 - [x] hover information for opcodes
