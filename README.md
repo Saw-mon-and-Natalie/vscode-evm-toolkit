@@ -21,3 +21,8 @@ Snippets and syntax highlighting for [EVM Toolkit](https://github.com/quilt/etk)
 # TODO:
 - [ ] add compile command
 - [x] hover information for opcodes
+
+# Creadits
+
+- [vscode-solidity-auditor](https://github.com/ConsenSys/vscode-solidity-auditor) for opcode hover cards
+- [evm.codes](http://evm.codes/) for hover cards links
