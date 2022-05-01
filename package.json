@@ -1,6 +1,6 @@
 {
   "name": "vscode-evm-toolkit",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "EVM Toolkit support for Visual Studio Code",
   "scripts": {
     "deploy": "vsce publish --yarn"
@@ -33,7 +33,8 @@
     "vscode": "^1.20.2"
   },
   "activationEvents": [
-    "onLanguage:evm-toolkit"
+    "onLanguage:evm-toolkit",
+    "onCommand:evm-toolkit.compile"
   ],
   "main": "./src/extension.js",
   "capabilities": {
@@ -66,6 +67,42 @@
           ".evm"
         ],
         "configuration": "./language-configuration.json"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "when": "editorLangId == 'evm-toolkit'",
+          "command": "evm-toolkit.compile"
+        }
+      ],
+      "editor/context": [
+        {
+          "when": "editorLangId == 'evm-toolkit'",
+          "command": "evm-toolkit.compile",
+          "group": "0_evm-toolkit"
+        }
+      ],
+      "explorer/context": [
+        {
+          "when": "editorLangId == 'evm-toolkit'",
+          "command": "evm-toolkit.compile",
+          "group": "1_evm-toolkit"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "evm-toolkit.compile",
+        "title": "EVM Toolkit: Compile File"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "evm-toolkit.compile",
+        "key": "f5",
+        "mac": "f5",
+        "when": "editorTextFocus && editorLangId == 'evm-toolkit'"
       }
     ],
     "grammars": [

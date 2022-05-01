@@ -9,6 +9,7 @@
 const vscode = require("vscode");
 const settings = require("./settings");
 const { provideHoverHandler } = require("./features/hover");
+const { compileActiveFile } = require("./features/compile")
 
 /** global vars */
 var activeEditor;
@@ -28,6 +29,12 @@ function onActivate(context) {
         },
       })
     );
+
+    context.subscriptions.push(vscode.commands.registerCommand('evm-toolkit.compile', async () => {
+      const compiledResults = await compileActiveFile();
+      return compiledResults;
+    }));
+
     vscode.window.onDidChangeActiveTextEditor(
       (editor) => {
         activeEditor = editor;

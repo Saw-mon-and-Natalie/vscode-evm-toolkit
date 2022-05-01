@@ -172,7 +172,7 @@
     },
     "opcodes-stack-push": {
       "begin": "(?x) \\b (push3[0-2]|push[1-2][0-9]|push[1-9]) \\b \\s* ",
-      "end": "($|\\n)",
+      "end": "($|\\n|((\\B|\\b)(?=#)))",
       "beginCaptures": {
         "1": { "name": "variable.other.push.evm-toolkit" }
       },
@@ -192,8 +192,9 @@
       "patterns": [
         { "include": "#round-braces" },
         { "include": "#number" },
+        { "include": "#macros-builtins-expressions" },
         { "include": "#expression-label" },
-        { "inlude": "#function-invocation"},
+        { "include": "#function-invocation"},
         { "include": "#macros-variables"}
       ]
     },

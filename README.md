@@ -32,8 +32,9 @@ Snippets and syntax highlighting for [EVM Toolkit](https://github.com/quilt/etk)
 </p>
 
 # TODO:
-- [ ] add compile command
+- [x] add compile command
 - [x] hover information for opcodes
+- [ ] add live preview
 
 # Creadits
 
