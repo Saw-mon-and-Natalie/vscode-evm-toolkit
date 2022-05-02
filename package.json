@@ -1,6 +1,6 @@
 {
   "name": "vscode-evm-toolkit",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "EVM Toolkit support for Visual Studio Code",
   "scripts": {
     "deploy": "vsce publish --yarn"
@@ -34,7 +34,8 @@
   },
   "activationEvents": [
     "onLanguage:evm-toolkit",
-    "onCommand:evm-toolkit.compile"
+    "onCommand:evm-toolkit.compile",
+    "onCommand:evm-toolkit.show-preview"
   ],
   "main": "./src/extension.js",
   "capabilities": {
@@ -74,6 +75,10 @@
         {
           "when": "editorLangId == 'evm-toolkit'",
           "command": "evm-toolkit.compile"
+        },
+        {
+          "when": "editorLangId == 'evm-toolkit'",
+          "command": "evm-toolkit.show-preview"
         }
       ],
       "editor/context": [
@@ -81,12 +86,29 @@
           "when": "editorLangId == 'evm-toolkit'",
           "command": "evm-toolkit.compile",
           "group": "0_evm-toolkit"
+        },
+        {
+          "when": "editorLangId == 'evm-toolkit'",
+          "command": "evm-toolkit.show-preview",
+          "group": "0_evm-toolkit"
+        }
+      ],
+      "editor/title": [
+        {
+          "when": "editorLangId == 'evm-toolkit'",
+          "command": "evm-toolkit.show-preview",
+          "group": "navigation"
         }
       ],
       "explorer/context": [
         {
           "when": "editorLangId == 'evm-toolkit'",
           "command": "evm-toolkit.compile",
+          "group": "1_evm-toolkit"
+        },
+        {
+          "when": "editorLangId == 'evm-toolkit'",
+          "command": "evm-toolkit.show-preview",
           "group": "1_evm-toolkit"
         }
       ]
@@ -95,6 +117,11 @@
       {
         "command": "evm-toolkit.compile",
         "title": "EVM Toolkit: Compile File"
+      },
+      {
+        "command": "evm-toolkit.show-preview",
+        "title": "EVM Toolkit: Show Preview",
+        "icon": "$(open-preview)"
       }
     ],
     "keybindings": [

@@ -31,10 +31,15 @@ Snippets and syntax highlighting for [EVM Toolkit](https://github.com/quilt/etk)
         <img src="https://github.com/Saw-mon-and-Natalie/vscode-evm-toolkit/raw/main/images/hover.png" alt="EVM Toolkit Visual Studio Code Extension syntax hover">
 </p>
 
+### Compiling
+
+To use the compile and preview commands you would need to have `eas` installed from [EVM Toolkit](https://github.com/quilt/etk).
+
 # TODO:
 - [x] add compile command
 - [x] hover information for opcodes
-- [ ] add live preview
+- [x] add live preview
+- [ ] add gas profile to live preview
 
 # Creadits
 
