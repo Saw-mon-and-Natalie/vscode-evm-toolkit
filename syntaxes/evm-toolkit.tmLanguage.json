@@ -38,30 +38,30 @@
       ]
     },
     "natspec-tag-title": {
-      "match": "(@title)\\b",
+      "match": "(?i)(@title)\\b",
       "name": "storage.type.title.natspec"
     },
     "natspec-tag-author": {
-      "match": "(@author)\\b",
+      "match": "(?i)(@author)\\b",
       "name": "storage.type.author.natspec"
     },
     "natspec-tag-notice": {
-      "match": "(@notice)\\b",
+      "match": "(?i)(@notice)\\b",
       "name": "storage.type.dev.natspec"
     },
     "natspec-tag-dev": {
-      "match": "(@dev)\\b",
+      "match": "(?i)(@dev)\\b",
       "name": "storage.type.dev.natspec"
     },
     "natspec-tag-param": {
-      "match": "(@param)(\\s+([A-Za-z_]\\w*))?\\b",
+      "match": "(?i)(@param)(\\s+([A-Za-z_]\\w*))?\\b",
       "captures": {
         "1": { "name": "storage.type.param.natspec" },
         "3": { "name": "variable.other.natspec" }
       }
     },
     "natspec-tag-return": {
-      "match": "(@return)\\b",
+      "match": "(?i)(@return)\\b",
       "name": "storage.type.return.natspec"
     },
     "number": {
@@ -104,13 +104,13 @@
       ]
     },
     "opcodes-io": {
-      "match": "\\b(sstore|sload|mstore8|mstore|mload|pop|msize|balance|address|returndatacopy|returndatasize|extcodecopy|extcodesize|gasprice|caller|origin|gaslimit|difficulty|number|timestamp|coinbase|blockhash|codecopy|codesize|calldatacopy|calldatasize|calldataload|callvalue|gas)\\b",
+      "match": "(?i)\\b(sstore|sload|mstore8|mstore|mload|pop|msize|balance|address|returndatacopy|returndatasize|extcodecopy|extcodesize|gasprice|caller|origin|gaslimit|difficulty|number|timestamp|coinbase|blockhash|codecopy|codesize|calldatacopy|calldatasize|calldataload|callvalue|gas)\\b",
       "captures": {
         "1": { "name": "entity.name.function.inputs.evm-toolkit" }
       }
     },
     "opcodes-side-effects": {
-      "match": "\\b(log4|log3|log2|log1|log0|jumpdest|pc|jumpi|jump|create2|staticcall|delegatecall|callcode|call|create)\\b",
+      "match": "(?i)\\b(log4|log3|log2|log1|log0|jumpdest|pc|jumpi|jump|create2|staticcall|delegatecall|callcode|call|create)\\b",
       "captures": {
         "1": { "name": "support.type.side-effects.evm-toolkit" }
       }
@@ -118,25 +118,25 @@
     "opcodes-calculation": {
       "patterns": [
         {
-          "match": "\\b(signextend|exp|mulmod|addmod|smod|mod|sdiv|div|sub|mul|add|shr|shl|ror|rol|sar)\\b",
+          "match": "(?i)\\b(signextend|exp|mulmod|addmod|smod|mod|sdiv|div|sub|mul|add|shr|shl|ror|rol|sar)\\b",
           "captures": {
             "1": { "name": "keyword.operator.arithmetic.evm-toolkit" }
           }
         },
         {
-          "match": "\\b(iszero|eq|sgt|slt|gt|lt)\\b",
+          "match": "(?i)\\b(iszero|eq|sgt|slt|gt|lt)\\b",
           "captures": {
             "1": { "name": "keyword.operator.comparison.evm-toolkit" }
           }
         },
         {
-          "match": "\\b(not|xor|or|and)\\b",
+          "match": "(?i)\\b(not|xor|or|and)\\b",
           "captures": {
             "1": { "name": "keyword.operator.bitwise.evm-toolkit" }
           }
         },
         {
-          "match": "\\b(keccak|keccak256|sha3|byte)\\b",
+          "match": "(?i)\\b(keccak|keccak256|sha3|byte)\\b",
           "captures": {
             "1": { "name": "keyword.operator.custom.evm-toolkit" }
           }
@@ -146,11 +146,11 @@
     "opcodes-stop": {
       "patterns": [
         {
-          "match": "\\b(invalid|revert)\\b",
+          "match": "(?i)\\b(invalid|revert)\\b",
           "name": "keyword.control.flow.evm-toolkit"
         },
         {
-          "match": "\\b(selfdestruct|return|stop)\\b",
+          "match": "(?i)\\b(selfdestruct|return|stop)\\b",
           "name": "keyword.control.flow.evm-toolkit"
         }
       ]
@@ -163,15 +163,15 @@
       ]
     },
     "opcodes-stack-swap": {
-      "match": "\\b((swap1)[0-6]|(swap)[1-9])\\b",
+      "match": "(?i)\\b((swap1)[0-6]|(swap)[1-9])\\b",
       "name": "variable.other.swap.evm-toolkit"
     },
     "opcodes-stack-dup": {
-      "match": "\\b((dup1)[0-6]|(dup)[1-9])\\b",
+      "match": "(?i)\\b((dup1)[0-6]|(dup)[1-9])\\b",
       "name": "variable.other.dup.evm-toolkit"
     },
     "opcodes-stack-push": {
-      "begin": "(?x) \\b (push3[0-2]|push[1-2][0-9]|push[1-9]) \\b \\s* ",
+      "begin": "(?ix) \\b (push3[0-2]|push[1-2][0-9]|push[1-9]) \\b \\s* ",
       "end": "($|\\n|((\\B|\\b)(?=#)))",
       "beginCaptures": {
         "1": { "name": "variable.other.push.evm-toolkit" }
@@ -236,7 +236,7 @@
       "patterns": [{ "include": "#function-declaration" }]
     },
     "macros-expression": {
-      "begin": "(?x) (\\% \\b def \\b) \\s+",
+      "begin": "(?ix) (\\% \\b def \\b) \\s+",
       "end": "\\n",
       "beginCaptures": {
         "1": { "name": "storage.type.function.evm-toolkit" }
@@ -244,7 +244,7 @@
       "patterns": [{ "include": "#function-declaration" }]
     },
     "macros-builtins-instructions": {
-      "begin": "(?x) (\\% \\b (import|include|include_hex|push) ) \\b \\(",
+      "begin": "(?ix) (\\% \\b (import|include|include_hex|push) ) \\b \\(",
       "end": "(\\s*\\))",
       "beginCaptures": {
         "1": { "name": "keyword.control.import.evm-toolkit" }
@@ -255,7 +255,7 @@
       "patterns": [{ "include": "#macro-arguments" }]
     },
     "macros-builtins-expressions": {
-      "begin": "(?x) (\\b (selector|topic) ) \\b \\(",
+      "begin": "(?ix) (\\b (selector|topic) ) \\b \\(",
       "end": "(\\s*\\))",
       "beginCaptures": {
         "1": { "name": "entity.name.function.builtin.evm-toolkit" }
@@ -300,7 +300,7 @@
       "patterns": [{ "include": "#macro-arguments" }]
     },
     "reserved-keywords": {
-      "match": "%\\bend\\b",
+      "match": "(?i)%\\bend\\b",
       "name": "storage.type.function.end.evm-toolkit"
     },
     "string": {
