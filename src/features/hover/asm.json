@@ -1464,7 +1464,7 @@
     "instr_pushes": 1,
     "instr_returns": ["sha3"],
     "instr_size": 1,
-    "prefix": "sha3"
+    "prefix": "keccak256"
   },
   "shl": {
     "description": "<TBD> Shift left",

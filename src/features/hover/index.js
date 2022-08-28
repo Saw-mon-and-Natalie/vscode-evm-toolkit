@@ -68,12 +68,15 @@ function createHover(name, snippet, type) {
     text.push("");
   }
 
-  if (isSet(snippet.instr_opcode))
+  if (isSet(snippet.instr_opcode)) {
+    const opcode = snippet.instr_opcode.toString(16).padStart(2, "0");
+    text.push(`💾 ${opcode} (opcode)`)
     text.push(
       "🌎 [more...](https://www.evm.codes/#" +
-        snippet.instr_opcode.toString(16).padStart(2, "0") +
+      opcode +
         ")"
     );
+  }
 
   const contents = new vscode.MarkdownString(text.join("  \n"));
   contents.isTrusted = true;

@@ -32,6 +32,25 @@
       "prefix": "topic",
       "body": "topic(\"${1:log_type}\")"
     },
+    "constructor bootstrap": {
+      "prefix": "constructor bootstrap",
+      "body": [
+        "# put runtime length on the stack",
+        "%push(end_runtime - start_runtime)\n",
+        "# copy runtime to memory",
+        "dup1",
+        "%push(start_runtime)",
+        "returndatasize",
+        "codecopy\n",
+        "# return runtime bytecode",
+        "returndatasize",
+        "return\n",
+        "start_runtime:",
+        "# --- RUNTIME CODE ---",
+        "$0\n",
+        "end_runtime:"
+      ]
+    },
     "push1": {
       "prefix": "push1",
       "body": "push1 $0"
