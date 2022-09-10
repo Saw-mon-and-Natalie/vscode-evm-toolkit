@@ -37,9 +37,6 @@ function createHover(name, snippet, type) {
   if (text.length > 0) {
     text.push("");
   }
-  if (isSet(snippet.example)) {
-    text.push(snippet.example);
-  }
 
   if (text.length > 0) {
     text.push("");
@@ -50,6 +47,10 @@ function createHover(name, snippet, type) {
         ? snippet.description.join("\n ")
         : snippet.description;
     text.push("💡 " + txt_descr);
+  }
+
+  if (isSet(snippet.example)) {
+    text.push(snippet.example);
   }
 
   if (text.length > 0) {
@@ -88,7 +89,7 @@ function createHover(name, snippet, type) {
 }
 
 function provideHoverHandler(document, position, token, type) {
-  const range = document.getWordRangeAtPosition(position, /([0-9\w>]+)/);
+  const range = document.getWordRangeAtPosition(position, /(\%?[0-9\w>_]+)/);
   if (!range || range.length <= 0) {
     return;
   }

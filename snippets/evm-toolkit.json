@@ -35,6 +35,8 @@
     "constructor bootstrap": {
       "prefix": "constructor bootstrap",
       "body": [
+        "# initialize storage",
+        "$1\n",
         "# put runtime length on the stack",
         "%push(end_runtime - start_runtime)\n",
         "# copy runtime to memory",
@@ -49,6 +51,15 @@
         "# --- RUNTIME CODE ---",
         "$0\n",
         "end_runtime:"
+      ]
+    },
+    "clear_memory": {
+      "prefix": "clear memory",
+      "body": [
+        "# clear memory",
+        "msize",
+        "calldatasize",
+        "calldatacopy"
       ]
     },
     "push1": {

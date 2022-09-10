@@ -228,7 +228,7 @@
       ]
     },
     "macros-instruction": {
-      "begin": "(?x) (\\% \\b macro \\b) \\s+",
+      "begin": "(?ix) (\\% \\b macro \\b) \\s+",
       "end": "\\n",
       "beginCaptures": {
         "1": { "name": "storage.type.function.evm-toolkit" }

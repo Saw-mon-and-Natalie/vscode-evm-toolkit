@@ -1836,5 +1836,45 @@
     "instr_returns": ["result"],
     "instr_size": 1,
     "prefix": "xor"
+  },
+  "macro": {
+    "description": "A macro is a rule or pattern that maps a given input to a replacement output. In other words, the assembler replaces a macro invocation with some other text (the macro expansion.)",
+    "example": " \nAn instruction macro looks like this: \n``` \n%macro push_sum(a, b) \n\tpush1 $a + $b \n%end \n%push_sum(4, 2) \n``` \nInstruction macros always begin with %, and expand to one or more instructions. In this case, %my_macro(4, 2) would expand to: \n``` \npush1 0x06 \n```",
+    "prefix": "%macro"
+  },
+  "def": {
+    "description": "A macro is a rule or pattern that maps a given input to a replacement output. In other words, the assembler replaces a macro invocation with some other text (the macro expansion.)",
+    "example": " \nExpression macros do not begin with `%`, and cannot replace instructions. Instead, expression macros can be used in expressions. For example: \n``` \n%def add_one(num) \n\t$num+1 \n%end \npush1 add_one(41) \n``` \nHere, `add_one(...)` is an expression macro that returns the `num+1`. The fully expanded source would look like: \n``` \npush1 42 \n```",
+    "prefix": "%def"
+  },
+  "import": {
+    "description": "The `%import` macro expands to the instructions read from another file as if they had been typed here. The path is resolved relative to the current file.",
+    "example": " \n*Source: main.etk* \n``` \npush1 some_label \njump \n \n%import(\"other.etk\") \n``` \n*Source: other.etk* \n``` \nsome_label: \n\tjumpdest \n\tstop \n``` \n*After Expansion* \n``` \npush1 0x03 \njump \n \njumpdest \nstop \n```",
+    "prefix": "%import"
+  },
+  "include": {
+    "description": "The `%include` macro expands to the instructions read from another file, but unlike `%import`, the included file is assembled independently from the current file: \n- Labels from the included file are not available in the including file, and vise versa. \n- The address of the first instruction in the included file will be zero. \nThe path is resolved relative to the current file.",
+    "example": " \n*Source: main.etk* \n``` \nsome_label:                 # <- Not visible in `other.etk`. \n\tpush1 some_label        # <- Pushes a zero on the stack. \n \n%import(\"other.etk\") \n``` \n*Source: other.etk* \n``` \ndifferent_label:            # <- Not visible in `main.etk`. \n\tpush1 different_label   # <- ALSO pushes a zero on the stack. \n``` \n*After Expansion* \n``` \npush1 0x00 \npush1 0x00 \n```",
+    "prefix": "%include"
+  }
+  ,
+  "include_hex": {
+    "description": "The `%include_hex` macro functions exactly like `%include`, except instead of assembling the given path, it includes the raw hexadecimal bytes.",
+    "prefix": "%include_hex"
+  },
+  "push_macro": {
+    "description": "The `%push` macro will expand to a reasonably sized push instruction for the given argument.",
+    "example": " \n``` \n%push(hello) \n \nhello: \n\tjumpdest \n``` \nWill look something like the following after expansion: \n``` \npush1 0x02 \njumpdest \n```",
+    "prefix": "%push"
+  },
+  "selector_macro": {
+    "description": "The `selector` macro is useful when writing contracts that adhere to the Solidity ABI. Specifically, the selector macro expands to the four byte selector of the given function signature.",
+    "example": " \nFor example: \n``` \npush4 selector(\"transfer(address,uint256)\")    # <- expands to 0x63a9059cbb \n``` \nThe fully expanded source would look like: \n``` \npush4 0xa9059cbb \n```",
+    "prefix": "selector"
+  },
+  "topic_macro": {
+    "description": "The `topic` macro is operates similiarly to selector, except it returns the entire 32 byte hash digest. This is useful for the log opcodes.",
+    "example": " \nFor example: \n``` \npush32 topic(\"transfer(address,uint256)\") \n``` \nThe fully expanded source would look like: \n``` \npush32 0xa9059cbb2ab09eb219583f4a59a5d0623ade346d962bcd4e46b11da047c9049b \n```",
+    "prefix": "topic"
   }
 }
